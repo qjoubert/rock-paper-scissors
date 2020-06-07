@@ -11,7 +11,7 @@ class Game {
   
     Score.setScore(playResults[2]);
     Round.showRoundResults(playResults);
-    Score.showScore();
+    if (playResults[2] != "draw") Score.showScore();
   }
 
   resetGame() {
