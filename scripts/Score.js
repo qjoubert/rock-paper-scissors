@@ -33,7 +33,6 @@ class Score {
   setScore(playResult) {
     const roundNumber = Round.getRoundNumber();
     if (roundNumber == 1) this.resetScore();  
-    if (playResult == "draw") Round.restartRound(roundNumber);
     if (playResult == "player") this.setPlayerScore(this.getPlayerScore() + 1);
     if (playResult == "computer") this.setComputerScore(this.getComputerScore() + 1);
   }
@@ -47,11 +46,6 @@ class Score {
       Score for round number ${roundNumber} :
       Player: ${playerScore} - Computer: ${computerScore}
     `);
-
-    if (roundNumber == 3) {
-      const winner = playerScore > computerScore ? "you" : "computer";
-      console.log(`${winner} wins the game!`, "Game Over");
-    }
   }
 }
 

@@ -14,10 +14,8 @@ class Round {
   }
   
   setRoundNumber(n) {
-    let currentRoundNumber = this.getRoundNumber();
-  
-    let newRoundNumber = currentRoundNumber === null ? 1 :
-      currentRoundNumber < 3 ? currentRoundNumber + 1 : 1;
+    let currentRoundNumber = this.getRoundNumber();  
+    let newRoundNumber = !currentRoundNumber ? 1 : currentRoundNumber + 1;
 
     sessionStorage.setItem("round", n || newRoundNumber);
   }
