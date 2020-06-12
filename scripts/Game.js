@@ -13,10 +13,18 @@ class Game {
     return false;
   }
 
-  play = () => {
+  ableMoveBtns() {
+    const btns = [...document.getElementsByClassName("move-button")];
+    btns.forEach(btn => { 
+      btn.removeAttribute("disabled");
+    });
+  }
+
+  play = (e) => {
     Round.setRoundNumber();
   
-    const playResults = Play.getPlayResults();
+    const playResults = Play.getPlayResults(e);
+    console.log(playResults)
   
     Score.setScore(playResults[2]);
     const hasWinner = this.checkWinner();

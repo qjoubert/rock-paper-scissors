@@ -3,8 +3,8 @@ import Score from "/scripts/Score.js";
 
 class Play {
 
-  getPlayResults() {
-    const playerPlay = this.getPlayerPlay();
+  getPlayResults(event) {
+    const playerPlay = event.target.dataset.move;
     const computerPlay = this.getComputerPlay();
     let winner;
     
@@ -34,10 +34,6 @@ class Play {
       'scissors';
     
     return computerPlay;
-  }
-    
-  getPlayerPlay() {
-    return prompt("Make Your Play").toLowerCase();  
   }
 }
 
