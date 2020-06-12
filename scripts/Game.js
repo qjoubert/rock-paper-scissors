@@ -20,23 +20,31 @@ class Game {
     });
   }
 
+  disableMoveBtns() {
+    const btns = [...document.getElementsByClassName("move-button")];
+    btns.forEach(btn => { 
+      btn.setAttribute("disabled", true);
+    });
+  }
+
   play = (e) => {
     Round.setRoundNumber();
-  
-    const playResults = Play.getPlayResults(e);
-    console.log(playResults)
-  
+    const playResults = Play.getPlayResults(e);  
     Score.setScore(playResults[2]);
     const hasWinner = this.checkWinner();
     Round.showRoundResults(playResults);
 
     if (playResults[2] != "draw") Score.showScore();
-    if (hasWinner) this.showWinner(hasWinner);
+    if (hasWinner) {
+      this.showWinner(hasWinner);
+      this.resetGame();
+    }
   }
 
-  resetGame() {
+  resetGame = () => {
     Round.resetRound();
     Score.resetScore();
+    this.disableMoveBtns();
   }
 
   showWinner(winner) {
