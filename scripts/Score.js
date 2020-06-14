@@ -2,6 +2,10 @@ import Round from "/scripts/Round.js";
 
 class Score {
 
+  clearScoreDisplay() {
+    document.getElementById("score-display").innerHTML = "";
+  }
+
   getComputerScore() {
     return +sessionStorage.getItem("computerScore");
   }
@@ -38,11 +42,13 @@ class Score {
   }
 
   showScore() {
+    const scoreDisplayDiv = document.getElementById("score-display");
+
     const roundNumber = Round.getRoundNumber();
     const playerScore = this.getPlayerScore();
     const computerScore = this.getComputerScore();
 
-    console.log(`
+    scoreDisplayDiv.innerHTML = (`
       Score for round number ${roundNumber} :
       Player: ${playerScore} - Computer: ${computerScore}
     `);

@@ -1,6 +1,10 @@
 
 class Round {
 
+  clearResultsDisplay() {
+    document.getElementById("results-display").innerHTML = "";
+  }
+
   getRoundNumber() {
     return +sessionStorage.getItem("round");
   }
@@ -21,6 +25,8 @@ class Round {
   }
     
   showRoundResults(results) {
+    const resultsDisplayDiv = document.getElementById("results-display");
+
     const playerPlay = results[0];
     const computerPlay = results[1];
     const playResult = results[2];
@@ -33,7 +39,7 @@ class Round {
     const message = `Player played ${playerPlay} and Computer played ${computerPlay} : 
     ${winnerText}`;
   
-    console.log(message);
+    resultsDisplayDiv.innerHTML  = message;
   }
 }
 
