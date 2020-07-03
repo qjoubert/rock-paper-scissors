@@ -1,14 +1,12 @@
-import Round from "/scripts/Round.js";
-import Score from "/scripts/Score.js";
 
-class Play {
+const playManager = (function() {
 
-  getPlayResults(event) {
+  function getPlayResults(event) {
     const playerPlay = event.target.dataset.move;
     const computerPlay = this.getComputerPlay();
     let winner;
     
-    if (playerPlay == computerPlay) {
+    if (playerPlay === computerPlay) {
       winner = "draw";
     } 
     else if (
@@ -25,16 +23,21 @@ class Play {
     return [playerPlay, computerPlay, winner];
   }
     
-  getComputerPlay() {
+  function getComputerPlay() {
     const randomNum = Math.floor(Math.random() * 3);
     
     let computerPlay = 
-      (randomNum == 0) ? 'rock' :
-      (randomNum == 1) ? 'paper' : 
+      (randomNum === 0) ? 'rock' :
+      (randomNum === 1) ? 'paper' : 
       'scissors';
     
     return computerPlay;
   }
-}
 
-export default new Play;
+  return {
+    getPlayResults,
+    getComputerPlay
+  }
+})();
+
+export default playManager;
