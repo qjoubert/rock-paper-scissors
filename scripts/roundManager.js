@@ -1,30 +1,30 @@
 
 const roundManager = (function() {
 
-  function getRoundNumber() {
-    return +sessionStorage.getItem("round");
+  function getRound() {
+    return sessionStorage.getItem("round");
   }
 
   function resetRound() {
-    sessionStorage.setItem("round", 0);
+    sessionStorage.setItem("round", 1);
   }
   
-  function restartRound(roundNumber) {
-    sessionStorage.setItem("round", roundNumber - 1);
+  function restartRound(round) {
+    sessionStorage.setItem("round", round - 1);
   }
   
-  function setRoundNumber(n = null) {
-    let currentRoundNumber = getRoundNumber();  
-    let newRoundNumber = !currentRoundNumber ? 1 : currentRoundNumber + 1;
+  function setRound(n = null) {
+    let currentRound = +getRound();  
+    let newRound = currentRound ? currentRound + 1 : 1;
 
-    sessionStorage.setItem("round", n || newRoundNumber);
+    sessionStorage.setItem("round", n || newRound);
   }
 
   return {
-    getRoundNumber,
+    getRound,
     resetRound,
     restartRound,
-    setRoundNumber
+    setRound
   };
 })();
 

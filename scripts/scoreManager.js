@@ -3,11 +3,11 @@ import roundManager from "/scripts/roundManager.js";
 const scoreManager = (function() {
   
   function getComputerScore() {
-    return +sessionStorage.getItem("computerScore");
+    return sessionStorage.getItem("computerScore");
   }
 
   function getPlayerScore() {
-    return +sessionStorage.getItem("playerScore");
+    return sessionStorage.getItem("playerScore");
   }
 
   function getScore() {
@@ -30,11 +30,13 @@ const scoreManager = (function() {
     sessionStorage.setItem("playerScore", n);
   }
 
-  function setScore(playResult) {
-    const roundNumber = roundManager.getRoundNumber();
-    if (roundNumber === 1) resetScore();  
-    if (playResult === "player") setPlayerScore(getPlayerScore() + 1);
-    if (playResult === "computer") setComputerScore(getComputerScore() + 1);
+  function setScore(winner) { 
+    if (winner === "player") {
+      setPlayerScore(+getPlayerScore() + 1)
+    }
+    if (winner === "computer") {
+      setComputerScore(+getComputerScore() + 1)
+    }
   }
 
   return {

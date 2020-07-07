@@ -4,21 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div>
-    <button class="move-btn" data-move="rock">Rock</button>
-    <button class="move-btn" data-move="paper">Paper</button>
-    <button class="move-btn" data-move="scissors">Scissors</button>
-  </div>
-  <div>
-    <button id="play-btn">Play</button>
-    <button id="reset-btn">Reset Game</button>
-  </div>
+
+  <div id="round-display"></div>
+  <div id="score-display">00 - 00</div>
+  <div id="info-display">click "play" to start a new Game</div>
   <div id="results-display"></div>
-  <div id="score-display"></div>
-  <div id="winner-display"></div>
+  
+  <section id="players">
+    <article id="player">
+      <h2>Player</h2>
+      <p id="player-play"></p>
+    </article>
+    <article id="computer">
+      <h2>Evil</h2>
+      <p id="computer-play"></p>
+    </article>
+  </section>
+
+  <section id="game-controls">
+    <section>
+      <button class="move-btn" data-move="rock">rock</button>
+      <button class="move-btn" data-move="paper">paper</button>
+      <button class="move-btn" data-move="scissors">scissors</button>
+    </section>
+  
+    <section>
+      <button id="play-btn">play</button>
+      <button id="reset-btn">reset</button>
+    </section>
+  </section>
+
   <script src="scripts/main.js" type="module"></script>
 </body>
 </html>

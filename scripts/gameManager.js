@@ -6,8 +6,8 @@ import scoreManager from "/scripts/scoreManager.js";
 const gameManager = (function() {
 
   function checkWinner() {
-    const playerScore = scoreManager.getPlayerScore();
-    const computerScore = scoreManager.getComputerScore();
+    const playerScore = +scoreManager.getPlayerScore();
+    const computerScore = +scoreManager.getComputerScore();
 
     return playerScore === 3 || computerScore === 3 ? true : false;
   }
@@ -16,27 +16,42 @@ const gameManager = (function() {
     const playerScore = scoreManager.getPlayerScore();
     const computerScore = scoreManager.getComputerScore();
     if (playerScore == 3) return "player";
-    if (computerScore == 3) return "computer";
+    if (computerScore == 3) return "evil";
     return null;
   }
 
   function setNewGame(e) {
-    displayManager.showMoveBtns();
     resetGame(e);
+    displayManager.showMoveBtns();
+    displayManager.showRound();
+    displayManager.showNewRoundInfo();
   };
 
   function play(e) {
-    roundManager.setRoundNumber();
-
-    const playResults = playManager.getPlayResults(e);  
-    scoreManager.setScore(playResults[2]);
-    displayManager.showRoundResults(playResults);
+    const playerPlay = playManager.getPlayerPlay(e);
+    const computerPlay = playManager.getComputerPlay();
+    const isDraw = playManager.checkDraw(playerPlay, computerPlay);
+    let playWinner; 
     
+    roundManager.setRound();
+
+    if(!isDraw) {
+      playWinner = playManager.getPlayWinner(playerPlay, computerPlay);
+      console.log(playWinner);
+      scoreManager.setScore(playWinner);
+    }
+
+    displayManager.showPlayerPlay(playerPlay);
+    displayManager.showComputerPlay(computerPlay);
+    displayManager.showRound();
     displayManager.showScore();
+
+    const result = isDraw ? "draw" : playWinner;
+    displayManager.showRoundResult(result);
 
     if (checkWinner()) {
       displayManager.showWinner(getWinner());
-      resetGame(e);
+      // resetGame(e);
     }
   };
 
@@ -44,15 +59,17 @@ const gameManager = (function() {
     if (e && e.target.id === "reset-btn" || e.target.id === "play-btn") {
       displayManager.clearResults();
       displayManager.clearScore();
-      displayManager.clearWinner();
     }
 
     if (e && e.target.id !== "play-btn") {
+      displayManager.clearRound();
       displayManager.hideMoveBtns();
+      displayManager.showStartInfo();
     } 
 
     roundManager.resetRound();
     scoreManager.resetScore();
+    displayManager.showScore();
   };
 
   return {

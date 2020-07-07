@@ -1,42 +1,46 @@
 
 const playManager = (function() {
 
-  function getPlayResults(event) {
-    const playerPlay = event.target.dataset.move;
-    const computerPlay = this.getComputerPlay();
+  function checkDraw(playerPlay, computerPlay) {
+    return playerPlay === computerPlay;
+  }
+
+  function getPlayWinner(playerPlay, computerPlay) {
     let winner;
     
-    if (playerPlay === computerPlay) {
-      winner = "draw";
-    } 
-    else if (
+    if (
       playerPlay == "rock" && computerPlay == "scissors" ||
       playerPlay == "scissors" && computerPlay == "paper" ||
       playerPlay == "paper" && computerPlay == "rock"
     ) {
       winner = "player";
-    } 
-    else {
+    } else {
       winner = "computer";
     }
       
-    return [playerPlay, computerPlay, winner];
+    return winner;
   }
     
   function getComputerPlay() {
     const randomNum = Math.floor(Math.random() * 3);
     
     let computerPlay = 
-      (randomNum === 0) ? 'rock' :
-      (randomNum === 1) ? 'paper' : 
-      'scissors';
+      randomNum === 0 ? "rock" :
+      randomNum === 1 ? "paper" : 
+      "scissors";
     
     return computerPlay;
   }
 
+  function getPlayerPlay(e) {
+    return e.target.dataset.move;
+  }
+
   return {
-    getPlayResults,
-    getComputerPlay
+    checkDraw,
+    getPlayerPlay,
+    getComputerPlay,
+    getPlayWinner
   }
 })();
 

@@ -5,64 +5,75 @@ import scoreManager from "/scripts/scoreManager.js";
 const displayManager = (function() {
 
   const moveBtns = document.querySelectorAll(".move-btn");
+  const infoDisplay = document.querySelector("#info-display");
   const resultsDisplay = document.querySelector("#results-display");
+  const roundDisplay = document.querySelector("#round-display");
   const scoreDisplay = document.querySelector("#score-display")
-  const winnerDisplay = document.querySelector("#winner-display");
 
   function clearResults() {
     resultsDisplay.innerHTML = "";
   }
 
-  function clearScore() {
-    scoreDisplay.innerHTML = "";
+  function clearRound() {
+    roundDisplay.textContent = "";
   }
 
-  function clearWinner() {
-    winnerDisplay.innerHTML = "";
+  function clearScore() {
+    scoreDisplay.textContent = "00 - 00";
   }
 
   function hideMoveBtns() {
     moveBtns.forEach(btn => {
-      btn.style.display = "none";
+      btn.style.visibility = "hidden";
     });
+  }
+
+  function showComputerPlay(play) {
+    const para = document.querySelector("#computer-play");
+    para.textContent = `${play} !`;
   }
 
   function showMoveBtns() {
     moveBtns.forEach(btn => { 
-      btn.style.display = "inline-block";
+      btn.style.visibility = "visible";
     });
   }
 
-  function showRoundResults(results) {
-    const playerPlay = results[0];
-    const computerPlay = results[1];
-    const playResult = results[2];
-  
-    const winnerText = 
-      playResult == "draw" ? "it's a draw, this round counts for nothing" :
-      playResult == "player" ? "Player wins this round!" :
-      "Computer wins this round!";
-  
-    const message = `Player played ${playerPlay} and Computer played ${computerPlay} : 
-    ${winnerText}`;
-  
-    resultsDisplay.innerHTML  = message;
+  function showPlayerPlay(play) {
+    const para = document.querySelector("#player-play");
+    para.textContent = `${play} !`;
+  }
+
+  function showRound() {
+    const round = roundManager.getRound().padStart(2, "0");
+    roundDisplay.textContent = `Round ${round}`;
+  }
+
+  function showRoundResult(result) {
+    const text = 
+      result == "draw" ? "it's a draw !" :
+      result == "player" ? "Player wins this round !" :
+      "Evil wins this round !";
+    infoDisplay.textContent = text;
+  }
+
+  function showNewRoundInfo() {
+    infoDisplay.textContent = `time to choose your move`;
   }
 
   function showScore() {
-    const roundNumber = roundManager.getRoundNumber();
-    const playerScore = scoreManager.getPlayerScore();
-    const computerScore = scoreManager.getComputerScore();
+    const playerScore = scoreManager.getPlayerScore().padStart(2, "0");
+    const computerScore = scoreManager.getComputerScore().padStart(2, "0");
 
-    scoreDisplay.innerHTML = (`
-      Score for round number ${roundNumber} :
-      Player: ${playerScore} - Computer: ${computerScore}
-    `);
+    scoreDisplay.textContent = `${playerScore} - ${computerScore}`;
+  }
+
+  function showStartInfo() {
+    infoDisplay.textContent = "click \"play\" to start a new game";
   }
 
   function showWinner(winner) {
-    winnerDisplay.innerHTML = (`
-     ${winner} won three rounds!
+    infoDisplay.textContent = (`
      ${winner} wins the game!
      Game Over
     `);
@@ -70,12 +81,17 @@ const displayManager = (function() {
 
   return { 
     clearResults,
+    clearRound,
     clearScore,
-    clearWinner,
     hideMoveBtns,
+    showComputerPlay,
     showMoveBtns,
-    showRoundResults,
+    showPlayerPlay,
+    showRound,
+    showRoundResult,
+    showNewRoundInfo,
     showScore,
+    showStartInfo,
     showWinner 
   };
 })();

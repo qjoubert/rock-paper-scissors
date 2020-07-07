@@ -3,10 +3,62 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
+  font-family: "Press Start 2P", arial, sans-serif;
+  font-size: 2rem;
   margin: 0;
 }
 
+h2 {
+  font-size: 2.2rem;
+}
+
+#round-display {
+  position: absolute;
+  padding: 2rem 1rem;
+}
+
+#score-display {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+#info-display {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+#players article {
+  box-sizing: border-box;
+  float: left;
+  height: 33vh;
+  padding: 1rem;
+  width: 50%;
+}
+
+#computer h2 {
+  text-align: right;
+}
+
+#game-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#game-controls section {
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.8rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
+}
+
 .move-btn {
-  display: none;
+  visibility: hidden;
 }
