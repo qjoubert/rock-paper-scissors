@@ -20,12 +20,13 @@ const gameManager = (function() {
     return null;
   }
 
-  function setNewGame(e) {
-    resetGame(e);
+  function setNewGame() {
+    displayManager.hidePlayBtn();
+    displayManager.showResetBtn();
     displayManager.showMoveBtns();
     displayManager.showRound();
     displayManager.showNewRoundInfo();
-  };
+  }
 
   function play(e) {
     const playerPlay = playManager.getPlayerPlay(e);
@@ -37,40 +38,39 @@ const gameManager = (function() {
 
     if(!isDraw) {
       playWinner = playManager.getPlayWinner(playerPlay, computerPlay);
-      console.log(playWinner);
       scoreManager.setScore(playWinner);
     }
 
     displayManager.showPlayerPlay(playerPlay);
     displayManager.showComputerPlay(computerPlay);
-    displayManager.showRound();
     displayManager.showScore();
-
-    const result = isDraw ? "draw" : playWinner;
-    displayManager.showRoundResult(result);
+    displayManager.showRoundResult(isDraw ? "draw" : playWinner);
 
     if (checkWinner()) {
       displayManager.showWinner(getWinner());
-      // resetGame(e);
+      displayManager.hideMoveBtns();
+      displayManager.hideResetBtn();
+      displayManager.showPlayBtn();
+    } else {
+      displayManager.showRound();
     }
-  };
+  }
 
   function resetGame(e) {
-    if (e && e.target.id === "reset-btn" || e.target.id === "play-btn") {
-      displayManager.clearResults();
-      displayManager.clearScore();
-    }
-
-    if (e && e.target.id !== "play-btn") {
+    if (e.target.id === "reset-btn") {
       displayManager.clearRound();
       displayManager.hideMoveBtns();
+      displayManager.hideResetBtn();
+      displayManager.showPlayBtn();
       displayManager.showStartInfo();
     } 
-
+    
+    displayManager.clearResults();
+    displayManager.clearScore();
     roundManager.resetRound();
     scoreManager.resetScore();
     displayManager.showScore();
-  };
+  }
 
   return {
     setNewGame,

@@ -39,6 +39,10 @@ h2 {
   text-align: right;
 }
 
+#computer-play {
+  text-align: right;
+}
+
 #game-controls {
   position: absolute;
   left: 0;
@@ -61,4 +65,7 @@ button {
 
 .move-btn {
   visibility: hidden;
+}
+#reset-btn {
+  display: none;
 }

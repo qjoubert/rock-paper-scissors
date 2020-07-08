@@ -8,7 +8,10 @@ const eventManager = (function() {
   const moveBtns = document.querySelectorAll(".move-btn");
 
   function addAllEventListeners() {
-    listen(playBtn, "click", gameManager.setNewGame);
+    listen(playBtn, "click", (e) => {
+      gameManager.resetGame(e);
+      gameManager.setNewGame();
+    });
     listen(resetBtn, "click", gameManager.resetGame);
     listenAll(moveBtns, "click", gameManager.play);
   }

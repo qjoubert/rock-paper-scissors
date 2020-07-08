@@ -4,8 +4,10 @@ import scoreManager from "/scripts/scoreManager.js";
 
 const displayManager = (function() {
 
-  const moveBtns = document.querySelectorAll(".move-btn");
   const infoDisplay = document.querySelector("#info-display");
+  const moveBtns = document.querySelectorAll(".move-btn");
+  const playBtn = document.querySelector("#play-btn");
+  const resetBtn = document.querySelector("#reset-btn");
   const resultsDisplay = document.querySelector("#results-display");
   const roundDisplay = document.querySelector("#round-display");
   const scoreDisplay = document.querySelector("#score-display")
@@ -28,6 +30,14 @@ const displayManager = (function() {
     });
   }
 
+  function hidePlayBtn() {
+    playBtn.style.display = "none";
+  }
+
+  function hideResetBtn() {
+    resetBtn.style.display = "none";
+  }
+
   function showComputerPlay(play) {
     const para = document.querySelector("#computer-play");
     para.textContent = `${play} !`;
@@ -39,9 +49,17 @@ const displayManager = (function() {
     });
   }
 
+  function showPlayBtn() {
+    playBtn.style.display = "inline-block";
+  }
+
   function showPlayerPlay(play) {
     const para = document.querySelector("#player-play");
     para.textContent = `${play} !`;
+  }
+
+  function showResetBtn() {
+    resetBtn.style.display = "inline-block";
   }
 
   function showRound() {
@@ -84,9 +102,13 @@ const displayManager = (function() {
     clearRound,
     clearScore,
     hideMoveBtns,
+    hidePlayBtn,
+    hideResetBtn,
     showComputerPlay,
     showMoveBtns,
+    showPlayBtn,
     showPlayerPlay,
+    showResetBtn,
     showRound,
     showRoundResult,
     showNewRoundInfo,
