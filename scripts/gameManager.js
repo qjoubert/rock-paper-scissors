@@ -8,8 +8,7 @@ const gameManager = (function() {
   function checkWinner() {
     const playerScore = +scoreManager.getPlayerScore();
     const computerScore = +scoreManager.getComputerScore();
-
-    return playerScore === 3 || computerScore === 3 ? true : false;
+    return playerScore === 3 || computerScore === 3;
   }
 
   function getWinner() {
@@ -34,24 +33,23 @@ const gameManager = (function() {
     const isDraw = playManager.checkDraw(playerPlay, computerPlay);
     let playWinner; 
     
-    roundManager.setRound();
-
     if(!isDraw) {
       playWinner = playManager.getPlayWinner(playerPlay, computerPlay);
       scoreManager.setScore(playWinner);
     }
-
+    
     displayManager.showPlayerPlay(playerPlay);
     displayManager.showComputerPlay(computerPlay);
     displayManager.showScore();
     displayManager.showRoundResult(isDraw ? "draw" : playWinner);
-
+    
     if (checkWinner()) {
       displayManager.showWinner(getWinner());
       displayManager.hideMoveBtns();
       displayManager.hideResetBtn();
       displayManager.showPlayBtn();
     } else {
+      roundManager.setRound();
       displayManager.showRound();
     }
   }
