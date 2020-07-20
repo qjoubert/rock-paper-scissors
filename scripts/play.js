@@ -1,73 +1,73 @@
+import score from "./score.js";
 
 export default (function() {
 
   const moveBtns = document.querySelectorAll(".move-btn");
-
-  function checkDraw(playerPlay, computerPlay) {
-    return playerPlay === computerPlay;
+  const infoDisplay = document.querySelector("#info-display");
+    
+  function _getComputerMove() {
+    const n = Math.floor(Math.random() * 3);
+    
+    return (
+      n === 0 ? "rock" :
+      n === 1 ? "paper" : 
+      "scissors"
+    );
   }
 
-  function getPlayWinner(playerPlay, computerPlay) {
-    let winner;
-    
-    if (
-      playerPlay == "rock" && computerPlay == "scissors" ||
-      playerPlay == "scissors" && computerPlay == "paper" ||
-      playerPlay == "paper" && computerPlay == "rock"
-    ) {
-      winner = "player";
-    } else {
-      winner = "computer";
-    }
-      
-    return winner;
-  }
-    
-  function getComputerPlay() {
-    const randomNum = Math.floor(Math.random() * 3);
-    
-    let computerPlay = 
-      randomNum === 0 ? "rock" :
-      randomNum === 1 ? "paper" : 
-      "scissors";
-    
-    return computerPlay;
+  function _getPlayWinner(playerMove, computerMove) {
+    return (
+      playerMove == "rock" && computerMove == "scissors" ||
+      playerMove == "scissors" && computerMove == "paper" ||
+      playerMove == "paper" && computerMove == "rock" ?
+      "player" : "computer"
+    );
   }
 
-  function getPlayerPlay(e) {
-    return e.target.dataset.move;
+  function _showComputerMove(play) {
+    document.querySelector("#computer-move").textContent = `${play} !`;
+  }
+
+  function _showPlayerMove(play) {
+    document.querySelector("#player-move").textContent = `${play} !`;
+  }
+
+  function _showPlayResult(result) {
+    infoDisplay.textContent = 
+      result == "draw" ? "it's a draw !" :
+      result == "player" ? "Player wins this round !" :
+      "Evil wins this round !";
   }
 
   function hideMoveBtns() {
-    moveBtns.forEach(btn => {
-      btn.style.visibility = "hidden";
-    });
+    moveBtns.forEach(btn => btn.style.visibility = "hidden");
   }
 
-  function showComputerPlay(play) {
-    const para = document.querySelector("#computer-play");
-    para.textContent = `${play} !`;
+  function playRound(e) {
+    const playerMove = e.target.dataset.move;
+    const computerMove = _getComputerMove();
+    const draw = playerMove === computerMove;
+
+    let playWinner; 
+    
+    if(!draw) {
+      playWinner = _getPlayWinner(playerMove, computerMove);
+      score.setScore(playWinner);
+    }
+    
+    _showPlayerMove(playerMove);
+    _showComputerMove(computerMove);
+    score.showScore();
+    _showPlayResult(draw ? "draw" : playWinner);
   }
 
   function showMoveBtns() {
-    moveBtns.forEach(btn => { 
-      btn.style.visibility = "visible";
-    });
-  }
-
-  function showPlayerPlay(play) {
-    const para = document.querySelector("#player-play");
-    para.textContent = `${play} !`;
+    moveBtns.forEach(btn => btn.style.visibility = "visible");
   }
 
   return {
-    checkDraw,
-    getPlayerPlay,
-    getComputerPlay,
-    getPlayWinner,
     hideMoveBtns,
-    showComputerPlay,
+    playRound,
     showMoveBtns,
-    showPlayerPlay
   }
 })();

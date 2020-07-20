@@ -3,6 +3,14 @@ export default (function() {
 
   const scoreDisplay = document.querySelector("#score-display")
 
+  function _setComputerScore(n) {
+    sessionStorage.setItem("computerScore", n);
+  }
+
+  function _setPlayerScore(n) {
+    sessionStorage.setItem("playerScore", n);
+  }
+
   function clearScore() {
     scoreDisplay.textContent = "00 - 00";
   }
@@ -15,32 +23,17 @@ export default (function() {
     return sessionStorage.getItem("playerScore");
   }
 
-  function getScore() {
-    const playerScore = getPlayerScore();
-    const computerScore = getComputerScore();
-  
-    return [playerScore, computerScore];
-  }
-
   function resetScore() {
-    sessionStorage.setItem("playerScore", 0);
-    sessionStorage.setItem("computerScore", 0);
-  }
-
-  function setComputerScore(n) {
-    sessionStorage.setItem("computerScore", n);
-  }
-
-  function setPlayerScore(n) {
-    sessionStorage.setItem("playerScore", n);
+    _setComputerScore(0);
+    _setPlayerScore(0);
   }
 
   function setScore(winner) { 
     if (winner === "player") {
-      setPlayerScore(+getPlayerScore() + 1)
+      _setPlayerScore(+getPlayerScore() + 1);
     }
     if (winner === "computer") {
-      setComputerScore(+getComputerScore() + 1)
+      _setComputerScore(+getComputerScore() + 1)
     }
   }
 
@@ -55,10 +48,7 @@ export default (function() {
     clearScore,
     getComputerScore,
     getPlayerScore,
-    getScore,
     resetScore,
-    setComputerScore,
-    setPlayerScore,
     setScore,
     showScore
   };

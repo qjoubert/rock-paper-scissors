@@ -14,6 +14,6 @@ import game from "/scripts/game.js";
   resetBtn.addEventListener("click", game.resetGame);
 
   moveBtns.forEach(btn => {
-    btn.addEventListener("click", game.playRound);
+    btn.addEventListener("click", game.onMoveClick);
   })
 })();
