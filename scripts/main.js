@@ -1,5 +1,5 @@
 
-import gameManager from "/scripts/gameManager.js";
+import game from "/scripts/game.js";
 
 (function() {
   const playBtn = document.querySelector("#play-btn");
@@ -7,13 +7,13 @@ import gameManager from "/scripts/gameManager.js";
   const moveBtns = document.querySelectorAll(".move-btn");
 
   playBtn.addEventListener("click", (e) => {
-    gameManager.resetGame(e);
-    gameManager.setNewGame();
+    game.resetGame(e);
+    game.setNewGame();
   });
 
-  resetBtn.addEventListener("click", gameManager.resetGame);
+  resetBtn.addEventListener("click", game.resetGame);
 
   moveBtns.forEach(btn => {
-    btn.addEventListener("click", gameManager.play);
+    btn.addEventListener("click", game.playRound);
   })
 })();

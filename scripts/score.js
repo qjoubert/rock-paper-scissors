@@ -1,6 +1,6 @@
-import roundManager from "/scripts/roundManager.js";
+import round from "/scripts/round.js";
 
-const scoreManager = (function() {
+export default (function() {
   
   function getComputerScore() {
     return sessionStorage.getItem("computerScore");
@@ -49,6 +49,3 @@ const scoreManager = (function() {
     setScore
   };
 })();
-
-
-export default scoreManager;

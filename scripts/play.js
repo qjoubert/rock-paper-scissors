@@ -1,5 +1,5 @@
 
-const playManager = (function() {
+export default (function() {
 
   function checkDraw(playerPlay, computerPlay) {
     return playerPlay === computerPlay;
@@ -43,5 +43,3 @@ const playManager = (function() {
     getPlayWinner
   }
 })();
-
-export default playManager;

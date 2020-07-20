@@ -1,8 +1,8 @@
 
-import roundManager from "/scripts/roundManager.js";
-import scoreManager from "/scripts/scoreManager.js";
+import round from "/scripts/round.js";
+import score from "/scripts/score.js";
 
-const displayManager = (function() {
+export default (function() {
 
   const infoDisplay = document.querySelector("#info-display");
   const moveBtns = document.querySelectorAll(".move-btn");
@@ -63,8 +63,8 @@ const displayManager = (function() {
   }
 
   function showRound() {
-    const round = roundManager.getRound().padStart(2, "0");
-    roundDisplay.textContent = `Round ${round}`;
+    const r = round.getRound().padStart(2, "0");
+    roundDisplay.textContent = `Round ${r}`;
   }
 
   function showRoundResult(result) {
@@ -80,8 +80,8 @@ const displayManager = (function() {
   }
 
   function showScore() {
-    const playerScore = scoreManager.getPlayerScore().padStart(2, "0");
-    const computerScore = scoreManager.getComputerScore().padStart(2, "0");
+    const playerScore = score.getPlayerScore().padStart(2, "0");
+    const computerScore = score.getComputerScore().padStart(2, "0");
 
     scoreDisplay.textContent = `${playerScore} - ${computerScore}`;
   }
@@ -117,5 +117,3 @@ const displayManager = (function() {
     showWinner 
   };
 })();
-
-export default displayManager;

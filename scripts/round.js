@@ -1,5 +1,5 @@
 
-const roundManager = (function() {
+export default (function() {
 
   function getRound() {
     return sessionStorage.getItem("round");
@@ -27,5 +27,3 @@ const roundManager = (function() {
     setRound
   };
 })();
-
-export default roundManager;
