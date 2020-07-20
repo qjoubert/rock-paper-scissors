@@ -6,6 +6,7 @@ module.exports = {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
   },
+  mode: "production",
   devServer: {
     contentBase: "./dist"
   },
@@ -16,6 +17,12 @@ module.exports = {
         use: [
           "style-loader",
           "css-loader"
+        ]
+      },
+      {
+        test: /\.ttf$/,
+        use: [
+          "file-loader"
         ]
       }
     ]

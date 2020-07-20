@@ -15,5 +15,5 @@ import game from "./modules/game";
 
   moveBtns.forEach(btn => {
     btn.addEventListener("click", game.onMoveClick);
-  })
+  });
 })();

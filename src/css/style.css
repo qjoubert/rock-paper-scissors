@@ -1,9 +1,14 @@
+@font-face {
+  font-family: "righteous";
+  src: url("../media/Righteous-Regular.ttf") format("truetype");
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
-  font-family: "Press Start 2P", arial, sans-serif;
+  font-family: righteous, sans-serif;
   font-size: 2rem;
   margin: 0;
 }
