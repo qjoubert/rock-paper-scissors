@@ -1,6 +1,12 @@
 
 export default (function() {
 
+  const roundDisplay = document.querySelector("#round-display");
+
+  function clearRound() {
+    roundDisplay.textContent = "";
+  }
+
   function getRound() {
     return sessionStorage.getItem("round");
   }
@@ -20,10 +26,17 @@ export default (function() {
     sessionStorage.setItem("round", n || newRound);
   }
 
+  function showRound() {
+    const round = getRound().padStart(2, "0");
+    roundDisplay.textContent = `Round ${round}`;
+  }
+
   return {
+    clearRound,
     getRound,
     resetRound,
     restartRound,
-    setRound
+    setRound,
+    showRound
   };
 })();

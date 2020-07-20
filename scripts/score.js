@@ -1,6 +1,11 @@
-import round from "/scripts/round.js";
 
 export default (function() {
+
+  const scoreDisplay = document.querySelector("#score-display")
+
+  function clearScore() {
+    scoreDisplay.textContent = "00 - 00";
+  }
   
   function getComputerScore() {
     return sessionStorage.getItem("computerScore");
@@ -39,13 +44,22 @@ export default (function() {
     }
   }
 
+  function showScore() {
+    const playerScore = getPlayerScore().padStart(2, "0");
+    const computerScore = getComputerScore().padStart(2, "0");
+
+    scoreDisplay.textContent = `${playerScore} - ${computerScore}`;
+  }
+
   return {
+    clearScore,
     getComputerScore,
     getPlayerScore,
     getScore,
     resetScore,
     setComputerScore,
     setPlayerScore,
-    setScore
+    setScore,
+    showScore
   };
 })();

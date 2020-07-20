@@ -1,6 +1,8 @@
 
 export default (function() {
 
+  const moveBtns = document.querySelectorAll(".move-btn");
+
   function checkDraw(playerPlay, computerPlay) {
     return playerPlay === computerPlay;
   }
@@ -36,10 +38,36 @@ export default (function() {
     return e.target.dataset.move;
   }
 
+  function hideMoveBtns() {
+    moveBtns.forEach(btn => {
+      btn.style.visibility = "hidden";
+    });
+  }
+
+  function showComputerPlay(play) {
+    const para = document.querySelector("#computer-play");
+    para.textContent = `${play} !`;
+  }
+
+  function showMoveBtns() {
+    moveBtns.forEach(btn => { 
+      btn.style.visibility = "visible";
+    });
+  }
+
+  function showPlayerPlay(play) {
+    const para = document.querySelector("#player-play");
+    para.textContent = `${play} !`;
+  }
+
   return {
     checkDraw,
     getPlayerPlay,
     getComputerPlay,
-    getPlayWinner
+    getPlayWinner,
+    hideMoveBtns,
+    showComputerPlay,
+    showMoveBtns,
+    showPlayerPlay
   }
 })();

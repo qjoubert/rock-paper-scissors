@@ -1,9 +1,12 @@
-import display from "/scripts/display.js";
 import play from "/scripts/play.js";
 import round from "/scripts/round.js";
 import score from "/scripts/score.js";
 
 export default (function() {
+
+  const playBtn = document.querySelector("#play-btn");
+  const resetBtn = document.querySelector("#reset-btn");
+  const infoDisplay = document.querySelector("#info-display");
 
   function checkWinner() {
     const playerScore = +score.getPlayerScore();
@@ -19,12 +22,51 @@ export default (function() {
     return null;
   }
 
+  function hidePlayBtn() {
+    playBtn.style.display = "none";
+  }
+
+  function hideResetBtn() {
+    resetBtn.style.display = "none";
+  }
+
   function setNewGame() {
-    display.hidePlayBtn();
-    display.showResetBtn();
-    display.showMoveBtns();
-    display.showRound();
-    display.showNewRoundInfo();
+    hidePlayBtn();
+    showResetBtn();
+    play.showMoveBtns();
+    round.showRound();
+    showNewRoundInfo();
+  }
+
+  function showPlayBtn() {
+    playBtn.style.display = "inline-block";
+  }
+
+  function showResetBtn() {
+    resetBtn.style.display = "inline-block";
+  }
+
+  function showRoundResult(result) {
+    const text = 
+      result == "draw" ? "it's a draw !" :
+      result == "player" ? "Player wins this round !" :
+      "Evil wins this round !";
+    infoDisplay.textContent = text;
+  }
+
+  function showNewRoundInfo() {
+    infoDisplay.textContent = `time to choose your move`;
+  }
+
+  function showStartInfo() {
+    infoDisplay.textContent = "click \"play\" to start a new game";
+  }
+
+  function showWinner(winner) {
+    infoDisplay.textContent = (`
+     ${winner} wins the game!
+     Game Over
+    `);
   }
 
   function playRound(e) {
@@ -38,36 +80,35 @@ export default (function() {
       score.setScore(playWinner);
     }
     
-    display.showPlayerPlay(playerPlay);
-    display.showComputerPlay(computerPlay);
-    display.showScore();
-    display.showRoundResult(isDraw ? "draw" : playWinner);
+    play.showPlayerPlay(playerPlay);
+    play.showComputerPlay(computerPlay);
+    score.showScore();
+    showRoundResult(isDraw ? "draw" : playWinner);
     
     if (checkWinner()) {
-      display.showWinner(getWinner());
-      display.hideMoveBtns();
-      display.hideResetBtn();
-      display.showPlayBtn();
+      showWinner(getWinner());
+      play.hideMoveBtns();
+      hideResetBtn();
+      showPlayBtn();
     } else {
       round.setRound();
-      display.showRound();
+      round.showRound();
     }
   }
 
   function resetGame(e) {
     if (e.target.id === "reset-btn") {
-      display.clearRound();
-      display.hideMoveBtns();
-      display.hideResetBtn();
-      display.showPlayBtn();
-      display.showStartInfo();
+      round.clearRound();
+      play.hideMoveBtns();
+      hideResetBtn();
+      showPlayBtn();
+      showStartInfo();
     } 
     
-    display.clearResults();
-    display.clearScore();
+    score.clearScore();
     round.resetRound();
     score.resetScore();
-    display.showScore();
+    score.showScore();
   }
 
   return {
