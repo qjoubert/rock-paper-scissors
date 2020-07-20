@@ -1,5 +1,5 @@
-
-import game from "/scripts/game.js";
+import "./css/style.css";
+import game from "./modules/game";
 
 (function() {
   const playBtn = document.querySelector("#play-btn");

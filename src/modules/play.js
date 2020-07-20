@@ -1,4 +1,4 @@
-import score from "./score.js";
+import score from "./score";
 
 export default (function() {
 

@@ -1,6 +1,6 @@
-import play from "/scripts/play.js";
-import round from "/scripts/round.js";
-import score from "/scripts/score.js";
+import play from "./play";
+import round from "./round";
+import score from "./score";
 
 export default (function() {
 
