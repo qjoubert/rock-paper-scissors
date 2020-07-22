@@ -72,7 +72,7 @@ button {
   background: none;
   border: 1px solid white;
   border-radius: 10px;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .move-btn:hover {

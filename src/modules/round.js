@@ -1,36 +1,33 @@
 
 export default (function() {
 
-  const roundDisplay = document.querySelector("#round-display");
+  function get(format = null) {
+    const round = sessionStorage.getItem("round");
+    
+    if (format == "padded") {
+      return round.padStart(2, "0")
+    }
 
-  function clearRound() {
-    roundDisplay.textContent = "";
+    return round;
   }
 
-  function _getRound() {
-    return sessionStorage.getItem("round");
-  }
-
-  function resetRound() {
+  function reset() {
     sessionStorage.setItem("round", 1);
   }
   
-  function setRound(n = null) {
-    let currentRound = +_getRound();  
-    let newRound = currentRound ? currentRound + 1 : 1;
+  function set(num = null) {
+    const current = +get();  
+    const round = 
+      num ? num : 
+      current ? (current + 1) : 
+      1;
 
-    sessionStorage.setItem("round", n || newRound);
-  }
-
-  function showRound() {
-    const round = _getRound().padStart(2, "0");
-    roundDisplay.textContent = `Round ${round}`;
+    sessionStorage.setItem("round", round);
   }
 
   return {
-    clearRound,
-    resetRound,
-    setRound,
-    showRound
+    get,
+    reset,
+    set
   };
 })();

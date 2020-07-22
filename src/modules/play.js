@@ -1,9 +1,5 @@
-import score from "./score";
 
 export default (function() {
-
-  const moveBtns = document.querySelectorAll(".move-btn");
-  const infoDisplay = document.querySelector("#info-display");
     
   function _getComputerMove() {
     const n = Math.floor(Math.random() * 3);
@@ -15,7 +11,7 @@ export default (function() {
     );
   }
 
-  function _getPlayWinner(playerMove, computerMove) {
+  function _getWinner(playerMove, computerMove) {
     return (
       playerMove == "rock" && computerMove == "scissors" ||
       playerMove == "scissors" && computerMove == "paper" ||
@@ -24,50 +20,25 @@ export default (function() {
     );
   }
 
-  function _showComputerMove(play) {
-    document.querySelector("#computer-move").textContent = `${play} !`;
-  }
-
-  function _showPlayerMove(play) {
-    document.querySelector("#player-move").textContent = `${play} !`;
-  }
-
-  function _showPlayResult(result) {
-    infoDisplay.textContent = 
-      result == "draw" ? "it's a draw !" :
-      result == "player" ? "Player wins this round !" :
-      "Evil wins this round !";
-  }
-
-  function hideMoveBtns() {
-    moveBtns.forEach(btn => btn.style.visibility = "hidden");
-  }
-
-  function playRound(e) {
+  function getResults(e) {
     const playerMove = e.target.parentNode.dataset.move;
     const computerMove = _getComputerMove();
     const draw = playerMove === computerMove;
-
-    let playWinner; 
+    let winner = null; 
     
     if(!draw) {
-      playWinner = _getPlayWinner(playerMove, computerMove);
-      score.setScore(playWinner);
+      winner = _getWinner(playerMove, computerMove);
     }
-    
-    _showPlayerMove(playerMove);
-    _showComputerMove(computerMove);
-    score.showScore();
-    _showPlayResult(draw ? "draw" : playWinner);
-  }
 
-  function showMoveBtns() {
-    moveBtns.forEach(btn => btn.style.visibility = "visible");
+    return {
+      playerMove,
+      computerMove,
+      draw,
+      winner
+    }
   }
 
   return {
-    hideMoveBtns,
-    playRound,
-    showMoveBtns,
+    getResults
   }
 })();

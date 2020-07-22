@@ -1,55 +1,29 @@
 
 export default (function() {
 
-  const scoreDisplay = document.querySelector("#score-display")
+  function get(player, format = null) {
+    const score = sessionStorage.getItem(`${player}Score`);
 
-  function _setComputerScore(n) {
-    sessionStorage.setItem("computerScore", n);
-  }
-
-  function _setPlayerScore(n) {
-    sessionStorage.setItem("playerScore", n);
-  }
-
-  function clearScore() {
-    scoreDisplay.textContent = "00 - 00";
-  }
-  
-  function getComputerScore() {
-    return sessionStorage.getItem("computerScore");
-  }
-
-  function getPlayerScore() {
-    return sessionStorage.getItem("playerScore");
-  }
-
-  function resetScore() {
-    _setComputerScore(0);
-    _setPlayerScore(0);
-  }
-
-  function setScore(winner) { 
-    if (winner === "player") {
-      _setPlayerScore(+getPlayerScore() + 1);
+    if (format == "padded") {
+      return score.padStart(2, "0");
     }
-    if (winner === "computer") {
-      _setComputerScore(+getComputerScore() + 1)
-    }
+
+    return score;
   }
 
-  function showScore() {
-    const playerScore = getPlayerScore().padStart(2, "0");
-    const computerScore = getComputerScore().padStart(2, "0");
+  function reset() {
+    set("player", 0);
+    set("computer", 0);
+  }
 
-    scoreDisplay.textContent = `${playerScore} - ${computerScore}`;
+  function set(player, num = null) { 
+    const score = num ?? +get(player) + 1;
+    sessionStorage.setItem(`${player}Score`, score);
   }
 
   return {
-    clearScore,
-    getComputerScore,
-    getPlayerScore,
-    resetScore,
-    setScore,
-    showScore
+    get,
+    reset,
+    set,
   };
 })();

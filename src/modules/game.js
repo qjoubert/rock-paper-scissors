@@ -1,87 +1,57 @@
+import dom from "./dom";
 import play from "./play";
 import round from "./round";
 import score from "./score";
 
 export default (function() {
 
-  const playBtn = document.querySelector("#play-btn");
-  const resetBtn = document.querySelector("#reset-btn");
-  const infoDisplay = document.querySelector("#info-display");
-
-  function _checkWinner() {
-    return ( 
-      score.getPlayerScore() == 3 || 
-      score.getComputerScore() == 3
-    );
-  }
-
-  function _clearMoves() {
-    document.querySelector("#computer-move").textContent = "";
-    document.querySelector("#player-move").textContent = "";
-  }
-
-  function _getWinner() {
-    if (score.getPlayerScore() == 3) return "player";
-    if (score.getComputerScore() == 3) return "evil";
-    return null;
-  }
-
-  function _hide(btn) {
-    btn.style.display = "none";
-  }
-
-  function _show(btn) {
-    btn.style.display = "inline-block";
-  }
-
-  function _showInfo(text) {
-    infoDisplay.textContent = text;
-  }
-
-  function _showWinner(winner) {
-    infoDisplay.textContent = (`
-     ${winner} wins the game!
-     Game Over
-    `);
-  }
-
   function onMoveClick(e) {
-    play.playRound(e);
+    const results = play.getResults(e);
+
+    if (!results.draw) {
+      score.set(results.winner);
+    }
+
+    const playerScore = score.get("player", "padded");
+    const computerScore = score.get("computer", "padded");
+    const scoreString = `${playerScore} - ${computerScore}`;
+
+    dom.printPlayResults({...results, score: scoreString});
     
     if (_checkWinner()) {
-      _showWinner(_getWinner());
-      play.hideMoveBtns();
-      _hide(resetBtn);
-      _show(playBtn);
-    } 
-
-    else {
-      round.setRound();
-      round.showRound();
+      _gameOver();
+    } else {
+      round.set();
+      dom.setNewRound(round.get("padded"));
     }
   }
 
   function resetGame(e) {
-    if (e.target.id === "reset-btn") {
-      round.clearRound();
-      play.hideMoveBtns();
-      _hide(resetBtn);
-      _show(playBtn);
-      _showInfo('click "play" to start a new game');
-    } 
-    _clearMoves();
-    score.clearScore();
-    round.resetRound();
-    score.resetScore();
-    score.showScore();
+    round.reset();
+    score.reset();
+    dom.reset(e);
   }  
   
   function setNewGame() {
-    _hide(playBtn);
-    _show(resetBtn);
-    play.showMoveBtns();
-    round.showRound();
-    _showInfo("choose your move");
+    dom.setNewGame();
+  }
+
+  function _checkWinner() {
+    return ( 
+      score.get("player") == 3 || 
+      score.get("computer") == 3
+    );
+  }
+
+  function _gameOver() {
+    const winner = _getWinner();
+    dom.gameOver(winner);
+  }
+
+  function _getWinner() {
+    if (score.get("player") == 3) return "player";
+    if (score.get("computer") == 3) return "evil";
+    return null;
   }
 
   return {
