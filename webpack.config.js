@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
   },
-  mode: "production",
+  mode: "development",
   devServer: {
     contentBase: "./dist"
   },
@@ -14,17 +15,31 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader"
-        ]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.ttf$/,
+        use: ["file-loader"]
+      },
+      {
+        test: /\.html$/,
         use: [
-          "file-loader"
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
         ]
+      },
+      {
+        test: /\.(png|gif|jpg|svg)$/,
+        use: ["file-loader"]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };

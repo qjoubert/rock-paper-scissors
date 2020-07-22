@@ -44,7 +44,7 @@ export default (function() {
   }
 
   function playRound(e) {
-    const playerMove = e.target.dataset.move;
+    const playerMove = e.target.parentNode.dataset.move;
     const computerMove = _getComputerMove();
     const draw = playerMove === computerMove;
 

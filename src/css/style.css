@@ -1,6 +1,6 @@
 @font-face {
   font-family: "righteous";
-  src: url("../media/Righteous-Regular.ttf") format("truetype");
+  src: url("../fonts/Righteous-Regular.ttf") format("truetype");
 }
 
 html {
@@ -69,8 +69,21 @@ button {
 }
 
 .move-btn {
-  visibility: hidden;
+  background: none;
+  border: 1px solid white;
+  border-radius: 10px;
+  /* visibility: hidden; */
 }
+
+.move-btn:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+}
+
+.move-icon {
+  height: 10rem;
+  width: 10rem;
+}
+
 #reset-btn {
   display: none;
 }
