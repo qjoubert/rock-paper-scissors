@@ -6,12 +6,8 @@ import game from "./modules/game";
   const resetBtn = document.querySelector("#reset-btn");
   const moveBtns = document.querySelectorAll(".move-btn");
 
-  playBtn.addEventListener("click", (e) => {
-    game.resetGame(e);
-    game.setNewGame();
-  });
-
-  resetBtn.addEventListener("click", game.resetGame);
+  playBtn.addEventListener("click", game.onPlayClick);
+  resetBtn.addEventListener("click", game.onResetClick);
 
   moveBtns.forEach(btn => {
     btn.addEventListener("click", game.onMoveClick);

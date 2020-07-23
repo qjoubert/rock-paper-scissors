@@ -1,14 +1,15 @@
 
 export default (function() {
 
-  function get(player, format = null) {
-    const score = sessionStorage.getItem(`${player}Score`);
+  function get(player) {
+    return sessionStorage.getItem(`${player}Score`);
+  }
 
-    if (format == "padded") {
-      return score.padStart(2, "0");
-    }
+  function getFormatted() {
+    const playerScore = get("player");
+    const computerScore = get("computer");
 
-    return score;
+    return `${playerScore.padStart(2, "0")} - ${computerScore.padStart(2, "0")}`;
   }
 
   function reset() {
@@ -23,6 +24,7 @@ export default (function() {
 
   return {
     get,
+    getFormatted,
     reset,
     set,
   };

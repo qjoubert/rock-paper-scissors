@@ -20,17 +20,14 @@ export default (function() {
     _display(playBtn);
   }
 
-  function reset(e) {
-    if (e.target.id === "reset-btn") {
-      _clear(roundDisplay);
-      _hideAll(moveBtns);
-      _remove(resetBtn);
-      _display(playBtn);
-      _print(infoDisplay, 'click "play" to start a new game');
-    } 
-
+  function reset() {
     _clear(computerMoveDisplay);
     _clear(playerMoveDisplay);
+    _clear(roundDisplay);
+    _remove(resetBtn);
+    _display(playBtn);
+    _hideAll(moveBtns);
+    _print(infoDisplay, 'click "play" to start a new game');
     _print(scoreDisplay, "00 - 00");
   } 
 
@@ -47,11 +44,14 @@ export default (function() {
   }
 
   function setNewGame() {
+    _clear(computerMoveDisplay);
+    _clear(playerMoveDisplay);
     _remove(playBtn);
     _display(resetBtn);
     _showAll(moveBtns);
-    _print(roundDisplay, "Round 01");
     _print(infoDisplay, "choose your move");
+    _print(roundDisplay, "Round 01");
+    _print(scoreDisplay, "00 - 00");
   }
 
   function setNewRound(round) {

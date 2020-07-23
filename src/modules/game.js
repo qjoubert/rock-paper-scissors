@@ -7,35 +7,33 @@ export default (function() {
 
   function onMoveClick(e) {
     const results = play.getResults(e);
-
+    
     if (!results.draw) {
       score.set(results.winner);
     }
 
-    const playerScore = score.get("player", "padded");
-    const computerScore = score.get("computer", "padded");
-    const scoreString = `${playerScore} - ${computerScore}`;
-
-    dom.printPlayResults({...results, score: scoreString});
+    const formattedScore = score.getFormatted();
+    dom.printPlayResults({...results, score: formattedScore});
     
-    if (_checkWinner()) {
-      _gameOver();
-    } else {
+    if (_checkWinner()) _gameOver();
+    else {
       round.set();
       dom.setNewRound(round.get("padded"));
     }
   }
 
-  function resetGame(e) {
+  function onPlayClick() {
     round.reset();
     score.reset();
-    dom.reset(e);
-  }  
-  
-  function setNewGame() {
     dom.setNewGame();
   }
 
+  function onResetClick() {
+    round.reset();
+    score.reset();
+    dom.reset();
+  }
+  
   function _checkWinner() {
     return ( 
       score.get("player") == 3 || 
@@ -56,7 +54,7 @@ export default (function() {
 
   return {
     onMoveClick,
-    resetGame,
-    setNewGame
+    onPlayClick,
+    onResetClick,
   };
 })(); 
