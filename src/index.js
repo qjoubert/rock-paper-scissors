@@ -1,3 +1,4 @@
+import "normalize.css";
 import "./css/style.css";
 import game from "./modules/game";
 
