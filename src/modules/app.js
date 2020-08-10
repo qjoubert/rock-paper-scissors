@@ -13,25 +13,25 @@ export default (function() {
     }
 
     const formattedScore = score.getFormatted();
-    dom.printPlayResults({...results, score: formattedScore});
+    dom.displayPlayResults({...results, score: formattedScore});
     
     if (_checkWinner()) _gameOver();
     else {
       round.set();
-      dom.setNewRound(round.get("padded"));
+      dom.displayNewRound(round.get("padded"));
     }
   }
 
   function onPlayClick() {
     round.reset();
     score.reset();
-    dom.setNewGame();
+    dom.setNewGameDisplay();
   }
 
   function onResetClick() {
     round.reset();
     score.reset();
-    dom.reset();
+    dom.resetDisplay();
   }
   
   function _checkWinner() {
@@ -43,7 +43,7 @@ export default (function() {
 
   function _gameOver() {
     const winner = _getWinner();
-    dom.gameOver(winner);
+    dom.setGameOverDisplay(winner);
   }
 
   function _getWinner() {
@@ -53,6 +53,7 @@ export default (function() {
   }
 
   return {
+    init,
     onMoveClick,
     onPlayClick,
     onResetClick,

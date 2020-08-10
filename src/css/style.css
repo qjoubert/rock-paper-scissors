@@ -17,22 +17,22 @@ h2 {
   font-size: 2.2rem;
 }
 
-#round-display {
+.round-display {
   position: absolute;
   padding: 2rem 1rem;
 }
 
-#score-display {
+.score-display {
   padding: 2rem 0;
   text-align: center;
 }
 
-#info-display {
+.info-display {
   padding: 2rem 0;
   text-align: center;
 }
 
-#players article {
+.players article {
   box-sizing: border-box;
   float: left;
   height: 33vh;
@@ -40,15 +40,15 @@ h2 {
   width: 50%;
 }
 
-#computer h2 {
+.computer h2 {
   text-align: right;
 }
 
-#computer-play {
+.computer-play {
   text-align: right;
 }
 
-#game-controls {
+.game-controls {
   position: absolute;
   left: 0;
   right: 0;
@@ -56,7 +56,7 @@ h2 {
   transform: translateY(-50%);
 }
 
-#game-controls section {
+.game-controls section {
   text-align: center;
 }
 
@@ -84,6 +84,6 @@ button {
   width: 10rem;
 }
 
-#reset-btn {
+.reset-btn {
   display: none;
 }

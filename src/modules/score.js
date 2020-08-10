@@ -17,8 +17,8 @@ export default (function() {
     set("computer", 0);
   }
 
-  function set(player, num = null) { 
-    const score = num ?? +get(player) + 1;
+  function set(player, n = null) { 
+    const score = n ?? +get(player) + 1;
     sessionStorage.setItem(`${player}Score`, score);
   }
 

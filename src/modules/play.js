@@ -1,7 +1,7 @@
 
 export default (function() {
     
-  function _getComputerMove() {
+  function getComputerMove() {
     const n = Math.floor(Math.random() * 3);
     
     return (
@@ -11,7 +11,7 @@ export default (function() {
     );
   }
 
-  function _getWinner(playerMove, computerMove) {
+  function getWinner(playerMove, computerMove) {
     return (
       playerMove == "rock" && computerMove == "scissors" ||
       playerMove == "scissors" && computerMove == "paper" ||
@@ -22,12 +22,12 @@ export default (function() {
 
   function getResults(e) {
     const playerMove = e.target.parentNode.dataset.move;
-    const computerMove = _getComputerMove();
+    const computerMove = getComputerMove();
     const draw = playerMove === computerMove;
     let winner = null; 
     
     if(!draw) {
-      winner = _getWinner(playerMove, computerMove);
+      winner = getWinner(playerMove, computerMove);
     }
 
     return {
