@@ -11,15 +11,6 @@ export default (function() {
     );
   }
 
-  function getWinner(playerMove, computerMove) {
-    return (
-      playerMove == "rock" && computerMove == "scissors" ||
-      playerMove == "scissors" && computerMove == "paper" ||
-      playerMove == "paper" && computerMove == "rock" ?
-      "player" : "computer"
-    );
-  }
-
   function getResults(e) {
     const playerMove = e.target.parentNode.dataset.move;
     const computerMove = getComputerMove();
@@ -36,6 +27,15 @@ export default (function() {
       draw,
       winner
     }
+  }
+
+  function getWinner(playerMove, computerMove) {
+    return (
+      playerMove == "rock" && computerMove == "scissors" ||
+      playerMove == "scissors" && computerMove == "paper" ||
+      playerMove == "paper" && computerMove == "rock" ?
+      "player" : "computer"
+    );
   }
 
   return {

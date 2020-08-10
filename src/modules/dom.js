@@ -1,5 +1,6 @@
 
 export default (function() {
+
   const playBtn = document.querySelector(".play-btn");
   const resetBtn = document.querySelector(".reset-btn");
   const moveBtns = document.querySelectorAll(".move-btn");
@@ -8,6 +9,28 @@ export default (function() {
   const playerMoveDisplay = document.querySelector(".player-move");
   const roundDisplay = document.querySelector(".round-display");
   const scoreDisplay = document.querySelector(".score-display");
+
+  function displayPlayResults({playerMove, computerMove, draw, winner, score}) {
+    const resultMessage = 
+      draw ? "égalité !" :
+      winner == "player" ? "Player 1 remporte cette manche !" :
+      "Evil Robot remporte cette manche !";
+
+    playerMoveDisplay.textContent = `${playerMove} !`;
+    computerMoveDisplay.textContent = `${computerMove} !`;
+    infoDisplay.textContent = resultMessage;
+    scoreDisplay.textContent = score;
+  }
+
+  function displayNewRound(round) {
+    roundDisplay.textContent = `Round ${round}`;
+  }
+
+  function hideAll(elements) {
+    elements.forEach(element => {
+      element.style.visibility = "hidden";
+    })
+  }
 
   function initEventListeners(app) {
     playBtn.addEventListener("click", app.onPlayClick);
@@ -18,7 +41,7 @@ export default (function() {
   }
 
   function setGameOverDisplay(winner) {
-    const winMessage = `${winner} wins the game!
+    const winMessage = `${winner == "player" ? "Player 1" : "Evil Robot"} gagne la partie !
     Game Over`;
 
     hideAll(moveBtns);
@@ -34,21 +57,10 @@ export default (function() {
     computerMoveDisplay.textContent = "";
     playerMoveDisplay.textContent = "";
     roundDisplay.textContent = "";
-    infoDisplay.textContent = "click \"play\" to start a new game";
+    infoDisplay.textContent = "cliquez sur \"start\" pour commencer une nouvelle partie";
     scoreDisplay.textContent = "00 - 00";
+    scoreDisplay.style.visibility = "hidden";
   } 
-
-  function displayPlayResults({playerMove, computerMove, draw, winner, score}) {
-    const resultMessage = 
-      draw ? "it's a draw !" :
-      winner == "player" ? "Player wins this round !" :
-      "Evil wins this round !";
-
-    playerMoveDisplay.textContent = `${playerMove} !`;
-    computerMoveDisplay.textContent = `${computerMove} !`;
-    infoDisplay.textContent = resultMessage;
-    scoreDisplay.textContent = score;
-  }
 
   function setNewGameDisplay() {
     showAll(moveBtns);
@@ -56,19 +68,10 @@ export default (function() {
     resetBtn.style.display = "inline-block";
     computerMoveDisplay.textContent = "";
     playerMoveDisplay.textContent = "";
-    infoDisplay.textContent = "choose your move";
+    infoDisplay.textContent = "choisissez votre mouvement";
     roundDisplay.textContent = "Round 01";
     scoreDisplay.textContent = "00 - 00";
-  }
-
-  function displayNewRound(round) {
-    roundDisplay.textContent = `Round ${round}`;
-  }
-
-  function hideAll(elements) {
-    elements.forEach(element => {
-      element.style.visibility = "hidden";
-    })
+    scoreDisplay.style.visibility = "visible";
   }
 
   function showAll(elements) {
