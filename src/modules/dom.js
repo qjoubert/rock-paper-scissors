@@ -1,3 +1,6 @@
+import rockIcon from "../assets/images/rock.png";
+import paperIcon from "../assets/images/paper.png";
+import scissorsIcon from "../assets/images/scissors.png";
 
 export default (function() {
 
@@ -16,8 +19,17 @@ export default (function() {
       winner == "player" ? "Player 1 remporte cette manche !" :
       "Evil Robot remporte cette manche !";
 
-    playerMoveDisplay.textContent = `${playerMove} !`;
-    computerMoveDisplay.textContent = `${computerMove} !`;
+    playerMoveDisplay.src = 
+      playerMove == "rock" ? rockIcon :
+      playerMove == "paper" ? paperIcon : scissorsIcon;
+
+    computerMoveDisplay.src = 
+      computerMove == "rock" ? rockIcon :
+      computerMove == "paper" ? paperIcon : scissorsIcon;
+
+    playerMoveDisplay.alt = `an icon representing a ${playerMove}`;
+    computerMoveDisplay.alt = `an icon representing a ${computerMove}`;
+
     infoDisplay.textContent = resultMessage;
     scoreDisplay.textContent = score;
   }
@@ -54,8 +66,10 @@ export default (function() {
     hideAll(moveBtns);
     resetBtn.style.display = "none";
     playBtn.style.display = "inline-block";
-    computerMoveDisplay.textContent = "";
-    playerMoveDisplay.textContent = "";
+    computerMoveDisplay.src = "#";
+    playerMoveDisplay.src = "#";
+    computerMoveDisplay.alt = "";
+    playerMoveDisplay.alt = "";
     roundDisplay.textContent = "";
     infoDisplay.textContent = "cliquez sur \"start\" pour commencer une nouvelle partie";
     scoreDisplay.textContent = "00 - 00";
@@ -66,8 +80,10 @@ export default (function() {
     showAll(moveBtns);
     playBtn.style.diplay = "none";
     resetBtn.style.display = "inline-block";
-    computerMoveDisplay.textContent = "";
-    playerMoveDisplay.textContent = "";
+    computerMoveDisplay.src = "#";
+    playerMoveDisplay.src = "#";
+    computerMoveDisplay.alt = "";
+    playerMoveDisplay.alt = "";
     infoDisplay.textContent = "choisissez votre mouvement";
     roundDisplay.textContent = "Round 01";
     scoreDisplay.textContent = "00 - 00";
