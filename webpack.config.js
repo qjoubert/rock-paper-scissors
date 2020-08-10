@@ -15,36 +15,36 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.ttf$/,
-        use: ["file-loader"]
-      },
-      {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
+        loader: "html-loader",
+        options: {
+          minimize: true
+        }
       },
       {
-        test: /\.(png|gif|jpg|svg)$/,
-        use: ["file-loader"]
+        test: /\.css$/,
+        use: [ "style-loader", "css-loader" ]
+      },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
         }
-      }
+      },
+      {
+        test: /\.ttf$/,
+        loader: "file-loader"
+      },
+      {
+        test: /\.(png|gif|jpg|svg)$/,
+        loader: "file-loader"
+      },
     ]
   },
   plugins: [

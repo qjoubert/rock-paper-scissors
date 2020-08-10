@@ -53,7 +53,6 @@ export default (function() {
   }
 
   return {
-    init,
     onMoveClick,
     onPlayClick,
     onResetClick,
