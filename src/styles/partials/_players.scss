@@ -41,4 +41,36 @@
 	}
 }
 
+@media only screen and (min-width: 580px) {
+	.player-name {
+		font-size: 3rem;
+	}
+}
 
+@media only screen and (min-width: 760px) {
+	.player-name {
+		font-size: 4rem;
+	}
+
+	.avatar {
+		width: 110px;
+	}
+
+	.player-avatar {
+		width: 140px;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.player-name {
+		font-size: 5rem;
+	}
+
+	.avatar {
+		width: 130px;
+	}
+
+	.player-avatar {
+		width: 165px;
+	}
+}

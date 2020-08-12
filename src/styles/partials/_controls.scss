@@ -41,3 +41,17 @@
     padding: 2rem 6rem;
   }
 }
+
+@media only screen and (min-width: 760px) {
+  .play-btn {
+    font-size: 3.5rem;
+    margin: 4rem;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .play-btn {
+    font-size: 4.5rem;
+    padding: 3rem 8rem;
+  }
+}

@@ -1,24 +1,52 @@
 .move-icon {
-  width: 5rem;
+  width: 50px;
 }
 
 @media only screen and (min-width: 360px) {
   .move-icon {
-    width: 6rem;
+    width: 60px;
   }
 
   .players-moves .move-icon {
-		width: 8rem;
+		width: 80px;
 	}
 }
 
 
 @media only screen and  (min-width: 400px) {
 	.move-icon {
-		width: 8rem;
+		width: 80px;
 	}
 
 	.players-moves .move-icon {
-		width: 10rem;
+		width: 100px;
+	}
+}
+
+@media only screen and (min-width: 760px) {
+	.move-icon {
+		width: 120px;
+	}	
+
+	.players-moves {
+		margin-top: 4rem;
+
+		& .move-icon {
+			width: 140px;
+		}
+	}
+}
+
+@media only screen and (min-width: 760px) {
+	.move-icon {
+		width: 140px;
+	}	
+
+	.players-moves {
+		margin-top: 5rem;
+
+		& .move-icon {
+			width: 160px;
+		}
 	}
 }
