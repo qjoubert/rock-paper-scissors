@@ -22,6 +22,11 @@
     border: 2px solid $pink;
     color: $pink;
   }
+
+  & p {
+    letter-spacing: 1px;
+    margin: 0;
+  }
 }
 
 .move-btns-container {
@@ -35,21 +40,56 @@
   width: 33.33%;
 }
 
-@media only screen and (min-width: 400px) {
+
+@media only screen and (min-width: 400px) and (orientation: portrait) {
   .play-btn {
     font-size: 2.6rem;
     padding: 2rem 6rem;
   }
 }
 
-@media only screen and (min-width: 760px) {
+/* for iPhone 3/4 in landscape orientation, 480 * 320 px : */
+@media only screen and (min-width: 480px) and (orientation: landscape) {
+  .game-controls {
+    height: 100%;
+    left: auto;
+    right: 0;
+    max-width: 20vw;
+  }
+
+  .play-btn {
+    padding: 1.5rem 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    & p {
+      letter-spacing: 0;
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+    }
+  }
+
+  .move-btns-container {
+    height: 100%;
+    flex-flow: column nowrap;
+  }
+
+  .move-btn {
+    height: 33.33%;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 760px) and (orientation: portrait) {
   .play-btn {
     font-size: 3.5rem;
     margin: 4rem;
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 900px) and (orientation: portrait) {
   .play-btn {
     font-size: 4.5rem;
     padding: 3rem 8rem;

@@ -17,7 +17,7 @@
 	width: 75px;
 }
 
-@media only screen and (min-width: 360px) {
+@media only screen and (min-width: 360px) and (orientation: portrait) {
 	.avatar {
 		width: 60px;
 	}
@@ -27,7 +27,7 @@
 	}
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 400px) and (orientation: portrait) {
 	.player-name {
 		font-size: 2.8rem;
 	}	
@@ -41,13 +41,33 @@
 	}
 }
 
-@media only screen and (min-width: 580px) {
+/* for iPhone 3/4 in landscape orientation, 480 * 320 px : */
+@media only screen and (min-width: 480px) and (orientation: landscape) {
+	.players {
+		width: 75vw;
+	}
+
+	.player {
+		text-align: left;
+	}
+
+	.player.computer {
+		text-align: right;
+	}
+
+	.player-name {
+		font-size: 2rem;
+		margin-top: 0;
+	}
+}
+
+@media only screen and (min-width: 580px) and (orientation: portrait) {
 	.player-name {
 		font-size: 3rem;
 	}
 }
 
-@media only screen and (min-width: 760px) {
+@media only screen and (min-width: 760px) and (orientation: portrait) {
 	.player-name {
 		font-size: 4rem;
 	}
@@ -61,7 +81,7 @@
 	}
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 900px) and (orientation: portrait) {
 	.player-name {
 		font-size: 5rem;
 	}

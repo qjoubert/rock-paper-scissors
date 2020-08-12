@@ -3,7 +3,27 @@
 }
 
 .player-move-container {
+	box-sizing: border-box;
 	padding: 1rem;
 	text-align: center;
 	width: 50%;
+}
+
+/* for iPhone 3/4 in landscape orientation, 480 * 320 px : */
+@media only screen and (min-width: 480px) and (orientation: landscape) {
+	.players-moves {
+		width: 80vw;
+	}
+
+	.player-move-container {
+		&:first-child {
+			text-align: right;
+			padding-right: 2rem;
+		}
+
+		&:nth-child(2) {
+			text-align: left;
+			padding-left: 2rem;
+		}
+	}
 }
