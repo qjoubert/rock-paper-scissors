@@ -1,24 +1,44 @@
-.players article {
-  box-sizing: border-box;
-  float: left;
+.players {
+	display: flex;
+}
+
+.player{
   height: 33vh;
   padding: 1rem;
+  text-align: center;	
   width: 50%;
 }
 
-.computer h2 {
-  text-align: right;
-}
-
-.computer-move {
-  float: right;
-}
-
 .avatar {
-	width: 50px;
+	width: 60px;
 }
 
-.computer-avatar {
-	float: right;
+.player-avatar {
+	width: 75px;
 }
+
+@media only screen and (min-width: 360px) {
+	.avatar {
+		width: 60px;
+	}
+
+	.player-avatar {
+		width: 75px;
+	}
+}
+
+@media only screen and (min-width: 400px) {
+	.player-name {
+		font-size: 2.8rem;
+	}	
+
+	.avatar {
+		width: 80px;
+	}
+
+	.player-avatar {
+		width: 102px;
+	}
+}
+
 

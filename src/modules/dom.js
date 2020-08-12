@@ -4,14 +4,15 @@ import scissorsIcon from "../assets/images/scissors.png";
 
 export default (function() {
 
-  const playBtn = document.querySelector(".play-btn");
-  const resetBtn = document.querySelector(".reset-btn");
-  const moveBtns = document.querySelectorAll(".move-btn");
-  const infoDisplay = document.querySelector(".info-display");
   const computerMoveDisplay = document.querySelector(".computer-move");
-  const playerMoveDisplay = document.querySelector(".player-move");
-  const roundDisplay = document.querySelector(".round-display");
-  const scoreDisplay = document.querySelector(".score-display");
+  const infoDisplay         = document.querySelector(".info-display");
+  const mainHeading         = document.querySelector("h1");
+  const moveBtns            = document.querySelectorAll(".move-btn");
+  const moveBtnsContainer   = document.querySelector(".move-btns-container");
+  const playBtn             = document.querySelector(".play-btn");
+  const playerMoveDisplay   = document.querySelector(".player-move");
+  const roundDisplay        = document.querySelector(".round-display");
+  const scoreDisplay        = document.querySelector(".score-display");
 
   function displayPlayResults({playerMove, computerMove, draw, winner, score}) {
     const resultMessage = 
@@ -30,23 +31,19 @@ export default (function() {
     playerMoveDisplay.alt = `an icon representing a ${playerMove}`;
     computerMoveDisplay.alt = `an icon representing a ${computerMove}`;
 
-    infoDisplay.textContent = resultMessage;
     scoreDisplay.textContent = score;
+    infoDisplay.textContent = resultMessage;
+    infoDisplay.style.color = 
+      draw ? "#3fdfdf" :
+      winner == "player" ? "#86E411" : "#F70D2E";
   }
 
   function displayNewRound(round) {
     roundDisplay.textContent = `Round ${round}`;
   }
 
-  function hideAll(elements) {
-    elements.forEach(element => {
-      element.style.visibility = "hidden";
-    })
-  }
-
   function initEventListeners(app) {
     playBtn.addEventListener("click", app.onPlayClick);
-    resetBtn.addEventListener("click", app.onResetClick);
     moveBtns.forEach(btn => {
       btn.addEventListener("click", app.onMoveClick);
     });
@@ -56,51 +53,33 @@ export default (function() {
     const winMessage = `${winner == "player" ? "Player 1" : "Evil Robot"} gagne la partie !
     Game Over`;
 
-    hideAll(moveBtns);
-    infoDisplay.textContent = winMessage;
-    resetBtn.style.display = "none";
+    moveBtnsContainer.style.display = "none";
     playBtn.style.display = "inline-block";
+    infoDisplay.textContent = winMessage;
+    infoDisplay.style.color = 
+      winner == "player" ? "#86E411" : "#F70D2E";
   }
 
-  function resetDisplay() {
-    hideAll(moveBtns);
-    resetBtn.style.display = "none";
-    playBtn.style.display = "inline-block";
-    computerMoveDisplay.src = "#";
-    playerMoveDisplay.src = "#";
-    computerMoveDisplay.alt = "";
-    playerMoveDisplay.alt = "";
-    roundDisplay.textContent = "";
-    infoDisplay.textContent = "cliquez sur \"start\" pour commencer une nouvelle partie";
-    scoreDisplay.textContent = "00 - 00";
-    scoreDisplay.style.visibility = "hidden";
-  } 
-
   function setNewGameDisplay() {
-    showAll(moveBtns);
-    playBtn.style.diplay = "none";
-    resetBtn.style.display = "inline-block";
+    mainHeading.style.display = "none";
+    moveBtnsContainer.style.display = "flex";
+    playBtn.style.display = "none";
     computerMoveDisplay.src = "#";
     playerMoveDisplay.src = "#";
     computerMoveDisplay.alt = "";
     playerMoveDisplay.alt = "";
     infoDisplay.textContent = "choisissez votre mouvement";
+    infoDisplay.style.color = "white";
     roundDisplay.textContent = "Round 01";
     scoreDisplay.textContent = "00 - 00";
-    scoreDisplay.style.visibility = "visible";
-  }
-
-  function showAll(elements) {
-    elements.forEach(element => {
-      element.style.visibility = "visible";
-    })
+    roundDisplay.style.display = "block";
+    scoreDisplay.style.display = "block";
   }
 
   return {
     initEventListeners,
     setGameOverDisplay,
     displayPlayResults,
-    resetDisplay,
     setNewGameDisplay,
     displayNewRound,
   };

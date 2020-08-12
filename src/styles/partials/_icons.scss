@@ -1,0 +1,24 @@
+.move-icon {
+  width: 5rem;
+}
+
+@media only screen and (min-width: 360px) {
+  .move-icon {
+    width: 6rem;
+  }
+
+  .players-moves .move-icon {
+		width: 8rem;
+	}
+}
+
+
+@media only screen and  (min-width: 400px) {
+	.move-icon {
+		width: 8rem;
+	}
+
+	.players-moves .move-icon {
+		width: 10rem;
+	}
+}

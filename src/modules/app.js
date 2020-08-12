@@ -46,15 +46,8 @@ export default (function() {
     dom.setNewGameDisplay();
   }
 
-  function onResetClick() {
-    round.reset();
-    score.reset();
-    dom.resetDisplay();
-  }
-
   return {
     onMoveClick,
     onPlayClick,
-    onResetClick,
   };
 })(); 

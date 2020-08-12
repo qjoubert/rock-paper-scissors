@@ -1,0 +1,61 @@
+@use "variables" as *;
+
+header {
+	padding-top: 2rem;
+
+	p {
+		margin: 0;
+	}
+}
+
+h1 {
+	font-size: 3.2rem;
+	margin-bottom: 2rem;	
+	text-align: center;
+
+	& span:first-child {
+		color: $red;
+	}
+
+	& span:nth-child(2) {
+		color: $green;
+	}
+
+	& span:last-child {
+		color: $blue;
+	}
+}
+
+.round-display {
+	display: none;
+  position: absolute;
+  padding: 0 1rem 2rem;
+}
+
+.score-display {
+	display: none;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.info-display {
+	font-size: 1.9rem;
+  padding: 0 .5rem 2rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 360px) {
+	.info-display {
+		padding: 1rem 2rem;
+	}
+}
+
+@media only screen and (min-width: 400px) {
+	h1 {
+		font-size: 3.8rem;
+	}	
+
+	.info-display, .round-display, .score-display {
+		font-size: 2.2rem;
+	}
+}
