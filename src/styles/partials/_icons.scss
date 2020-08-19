@@ -2,24 +2,43 @@
   width: 50px;
 }
 
+@media only screen and (min-width: 320px) and (min-height: 568px) and (orientation: portrait) {
+	.players-moves {
+		margin-top: 2rem;
+	}
+
+	.players-moves .move-icon {
+		width: 65px;
+	}
+}
+
 @media only screen and (min-width: 360px) and (orientation: portrait) {
   .move-icon {
     width: 60px;
   }
 
   .players-moves .move-icon {
-		width: 80px;
+		width: 75px;
 	}
 }
 
-
-@media only screen and  (min-width: 400px) and (orientation: portrait) {
+@media only screen and (min-width: 400px) and (orientation: portrait) {
 	.move-icon {
 		width: 80px;
 	}
 
 	.players-moves .move-icon {
 		width: 100px;
+	}
+}
+
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+	.move-icon {
+		width: 100px;
+	}
+
+	.players-moves .move-icon {
+		width: 120px;
 	}
 }
 
@@ -48,5 +67,29 @@
 		& .move-icon {
 			width: 160px;
 		}
+	}
+}
+
+@media only screen and (min-width: 568px) and (orientation: landscape) {
+	.players-moves .move-icon {
+		width: 58px;
+	}
+}
+
+@media only screen and (min-width: 640px) and (orientation: landscape) {
+	.move-icon, .players-moves .move-icon {
+		width: 60px;
+	}
+}
+
+@media only screen and (min-width: 800px) and (orientation: landscape) {
+	.move-icon, .players-moves .move-icon {
+		width: 80px;
+	}
+}
+
+@media only screen and (min-width: 960px) and (orientation: landscape) {
+	.move-icon, .players-moves .move-icon {
+		width: 100px;
 	}
 }
