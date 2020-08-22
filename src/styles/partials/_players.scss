@@ -160,3 +160,27 @@
 		width: 123px;	
 	}
 }
+
+@media only screen and (min-width: 1020px) and (orientation: landscape) {
+	.players {
+		width: 100%;
+	}
+
+	.player, .player.computer {
+		text-align: center;
+	}
+}
+
+@media only screen and (min-width: 1300px) and (orientation: landscape) {
+	.player-name {
+		font-size: 4rem;
+	}
+
+	.avatar {
+		width: 150px;
+	}
+
+	.player-avatar {
+		width: 183px;
+	}
+}

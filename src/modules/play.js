@@ -1,6 +1,5 @@
 
 export default (function() {
-    
   function getComputerMove() {
     const n = Math.floor(Math.random() * 3);
     
@@ -12,7 +11,7 @@ export default (function() {
   }
 
   function getResults(e) {
-    const playerMove = e.target.parentNode.dataset.move;
+    const playerMove = e.target.dataset.move;
     const computerMove = getComputerMove();
     const draw = playerMove === computerMove;
     let winner = null; 

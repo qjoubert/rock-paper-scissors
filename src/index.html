@@ -14,42 +14,45 @@
     <p class="score-display">00 - 00</p>
     <p class="info-display">Cliquez sur "start" pour commencer une nouvelle partie</p>
   </header>
-  
-  <section class="players">
-    <article class="player">
-      <h2 class="player-name">Player 1</h2>
-      <img src="assets/images/nerd.svg" alt="a drawing of a nerdy person" class="avatar player-avatar">
-    </article>
-    <article class="player computer">
-      <h2 class="player-name">Evil Robot</h2>
-      <img src="assets/images/robot.svg" alt="a drawing of a robot" class="avatar computer-avatar">
-    </article>
-  </section>
 
-  <section class="players-moves">
-    <div class="player-move-container">
-      <img class="move-icon player-move" src="#" alt="">
-    </div>
-    <div class="player-move-container">
-      <img class="move-icon computer-move" src="#" alt="">      
-    </div>
-  </section>
-
-  <section class="game-controls">
-    <section class="move-btns-container">
-      <button class="move-btn" data-move="rock">
-        <img class="move-icon" src="assets/images/rock.png" alt="a boxing glove icon">
-      </button>
-      <button class="move-btn" data-move="paper">
-        <img class="move-icon" src="assets/images/paper.png" alt="a toilet paper icon">
-      </button>
-      <button class="move-btn" data-move="scissors">
-        <img class="move-icon" src="assets/images/scissors.png" alt="a hand showing two fingers, like a scissors">
-      </button>
+  <main>
+    <section class="players">
+      <article class="player">
+        <h2 class="player-name">Player 1</h2>
+        <img src="assets/images/nerd.svg" alt="a drawing of a nerdy person" class="avatar player-avatar">
+      </article>
+      <article class="player computer">
+        <h2 class="player-name">Evil Robot</h2>
+        <img src="assets/images/robot.svg" alt="a drawing of a robot" class="avatar computer-avatar">
+      </article>
     </section>
+
+    <section class="players-moves">
+      <div class="player-move-container">
+        <img class="move-icon player-move" src="#" alt="">
+      </div>
+      <div class="player-move-container">
+        <img class="move-icon computer-move" src="#" alt="">      
+      </div>
+    </section>
+
+    <section class="game-controls">
+      <section class="move-btns-container">
+        <button class="move-btn" data-move="rock">
+          <img class="move-icon" data-move="rock" src="assets/images/rock.png" alt="a boxing glove icon">
+        </button>
+        <button class="move-btn" data-move="paper">
+          <img class="move-icon" data-move="paper" src="assets/images/paper.png" alt="a toilet paper icon">
+        </button>
+        <button class="move-btn" data-move="scissors">
+          <img class="move-icon" data-move="scissors" src="assets/images/scissors.png" alt="a hand showing two fingers, like a scissors">
+        </button>
+      </section>
+    
+      <button class="play-btn"><p>START</p></button>
+    </section>
+  </main>
   
-    <button class="play-btn"><p>START</p></button>
-  </section>
 
 </body>
 </html>

@@ -38,6 +38,14 @@
   border: none;
   margin: 0;
   width: 33.33%;
+
+  & .move-icon {
+    transition: all .4s ease;
+  }
+
+  &:hover .move-icon {
+    transform: scale(1.1);
+  }
 }
 
 @media only screen and (min-width: 400px) and (orientation: portrait) {
@@ -111,5 +119,51 @@
   .play-btn {
     font-size: 3rem;
     padding: 3rem 2.5rem;
+  }
+}
+
+@media only screen and (min-width: 1020px) and (orientation: landscape) {
+  .game-controls {
+    height: auto;
+    left: 0;
+    right: 0;
+    max-width: unset;
+  }
+
+  .move-btns-container {
+    height: auto;
+    flex-flow: row nowrap;
+  }
+
+  .play-btn {
+    position: static;
+    right: 1rem;
+    top: 50%;
+    transform: none;
+    
+    & p {
+      writing-mode: horizontal-tb;
+      text-orientation: initial;
+    }
+  }
+}
+
+@media only screen and (min-width: 1300px) and (orientation: landscape) {
+  .move-btn {
+    padding: 1.5rem 3rem;
+  }
+
+  .play-btn {
+    padding: 3rem 5rem;
+
+    & p {
+      letter-spacing: 3px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) and (orientation: landscape) {
+  .play-btn {
+    margin-bottom: 3rem;
   }
 }
